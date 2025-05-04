@@ -1,12 +1,30 @@
 {
-  "name": "wetube",
+  "name": "2025_wetube",
   "version": "1.0.0",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon --exec babel-node src/server.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": ""
+  "keywords": [
+    "nodejs",
+    "express",
+    "babel",
+    "nodemon"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/azerckid/2025_WETUBE.git"
+  },
+  "author": "azerc",
+  "license": "MIT",
+  "description": "wetube clone",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.27.1",
+    "@babel/node": "^7.27.1",
+    "@babel/preset-env": "^7.27.1",
+    "nodemon": "^3.1.10"
+  }
 }
