@@ -1,0 +1,14 @@
+extends base
+
+block content
+    h4 title : #{video.title}
+    h4 description : #{video.description}
+    h4 createdAt : #{video.createdAt.toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}
+    h4 views : #{video.meta.views} #{video.meta.views === 1 ? "view" : "views"}
+    h4 rating : #{video.meta.rating}/5.
+    h4 hashtags : #{video.hashtags.join(", ")}
+
+    a(href=`${video.id}/edit`) Edit Video &rarr;
+    //- 이경로는 절대경로인가 상대경로인가?
+    br
+    a(href=`${video.id}/delete`) Delete Video &rarr;

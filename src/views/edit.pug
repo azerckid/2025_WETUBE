@@ -1,0 +1,15 @@
+extends base.pug
+
+block content
+    h4 Update Video
+    //- form(method="POST")은 지금있는 같은 url로 POST 방식으로 보내지고
+    //- 콘트롤러에서 POST로 받아서 데이터를 수정하는 것이다.
+    form(method="POST")
+        label(for="title") Title
+        input(name="title", placeholder="Video Title", value=video.title, required)
+        label(for="description") Description
+        input(name="description", placeholder="Description", value=video.description, required)
+        label(for="hashtags") Hashtags
+        input(name="hashtags", placeholder="Hashtags", value=video.hashtags.join().replace(/#/g, ""), required)
+        input(value="Save",type="submit")
+        a(href="javascript:history.back()") Back &rarr;

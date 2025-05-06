@@ -1,14 +1,13 @@
 import express from "express";
-import dotenv from "dotenv";
 import path from "path";
 import cors from "cors";
 import morgan from "morgan";
 import helmet from "helmet";
 import router from "./router";
+import dotenv from "dotenv";
 
 dotenv.config();
 
-const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.set("view engine", "pug");
@@ -39,6 +38,4 @@ app.use((err, req, res, next) => {
     res.status(500).json({ message: "서버 오류가 발생했습니다." });
 });
 
-app.listen(PORT, () => {
-    console.log(`Server is running on ${process.env.CLIENT_URL} / ${process.env.NODE_ENV} mode`);
-});
+export default app;

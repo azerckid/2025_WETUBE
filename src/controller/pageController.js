@@ -1,8 +1,7 @@
 const pageController = {
     getHome: (req, res) => {
         try {
-            // 로직
-            res.render("home", { pageTitle: "Home", title: "Wetube" });
+            res.render("home", { pageTitle: "Home" });
         } catch (error) {
             console.error(error);
             res.status(500).send("Internal Server Error");
@@ -10,8 +9,7 @@ const pageController = {
     },
     getAbout: (req, res) => {
         try {
-            // 로직
-            res.render("about", { pageTitle: "About", title: "Wetube" });
+            res.render("about", { pageTitle: "About" });
         } catch (error) {
             console.error(error);
             res.status(500).send("Internal Server Error");

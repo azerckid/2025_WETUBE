@@ -1,0 +1,13 @@
+extends base.pug
+include mixins/video
+
+block content
+    h1 Search
+    form(action="/videos/search", method="GET")
+        input(name="keyword", placeholder="Search for a video", required)
+        button Search now
+    if videos.length === 0
+        h5 No videos found
+    else
+        each video in videos
+            +video(video)

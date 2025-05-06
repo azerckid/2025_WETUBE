@@ -1,3 +1,8 @@
+const fakeUser = {
+    username: "henry",
+    loggedIn: false,
+};
+
 const usersController = {
     getUser: (req, res) => {
         res.send("getUser")

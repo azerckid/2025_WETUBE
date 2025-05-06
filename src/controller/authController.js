@@ -1,14 +1,24 @@
+const fakeUser = {
+    username: "henry",
+    loggedIn: false,
+};
+
 const authController = {
     getLogin: (req, res) => {
         try {
-            res.render("login", { pageTitle: "Login", title: "Wetube" });
+            res.render("login", { pageTitle: "Login", fakeUser: fakeUser });
         } catch (error) {
             console.error(error);
             res.status(500).send("Internal Server Error");
         }
     },
     getJoin: (req, res) => {
-        res.render("join", { pageTitle: "Join", title: "Wetube" });
+        try {
+            res.render("join", { pageTitle: "Join", fakeUser: fakeUser });
+        } catch (error) {
+            console.error(error);
+            res.status(500).send("Internal Server Error");
+        }
     },
     getLogout: (req, res) => {
         res.send("logout")

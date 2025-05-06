@@ -1,8 +1,5 @@
 extends base.pug
 
-block head
-    title #{pageTitle} | #{title}
-
 block content
     form(method="POST")
         input(placeholder="Username", type="text", name="username", required)
@@ -11,5 +8,6 @@ block content
         input(type="submit", value="Join")
         br
         a(href="login") Login &rarr;
+        br
+        a(href="/")  Home &rarr;
 
-    

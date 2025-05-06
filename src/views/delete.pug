@@ -1,0 +1,7 @@
+extends base.pug
+
+block content
+    h4 Delete Video
+    form(method="POST")
+        input(type="hidden", name="id", value=id)
+        input(type="submit", value="Delete")
