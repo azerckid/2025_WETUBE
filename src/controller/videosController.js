@@ -1,6 +1,7 @@
 import Video from "../models/Video";
 
 const videosController = {
+
     getVideos: async (req, res) => {
         try {
             const videos = await Video.find({}).sort({ createdAt: "desc" });
@@ -44,7 +45,7 @@ const videosController = {
             const video = await Video.findById(id);
             res.render("edit", { pageTitle: `Editing ${video.title}`, video });
         } catch (error) {
-            res.status(400).render("404", { pageTitle: "Video Not Found" });
+            res.status(404).render("404", { pageTitle: "Video Not Found" });
         }
     },
     postEdit: async (req, res) => {
@@ -67,7 +68,7 @@ const videosController = {
         }
     },
     getUpload: (req, res) => {
-        res.render("upload", { pageTitle: "Upload Video" })
+        res.render("upload", { pageTitle: "Upload Video" });
     },
     postUpload: async (req, res) => {
         const { title, description, hashtags } = req.body;
@@ -112,7 +113,6 @@ const videosController = {
         const { id } = req.params;
         res.send(`postCommentsDelete ${id}`)
     }
-
 }
 
 export default videosController;

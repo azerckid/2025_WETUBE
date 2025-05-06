@@ -1,10 +1,13 @@
 extends base.pug
 
 block content
-    h2 Welcome here you will see the trending videos
+    if errorMessage
+        span=errorMessage
     form(method="POST")
-        input(placeholder="Username", type="text", name="username", required)
+        input(placeholder="Email", type="email", name="email", required)
         input(placeholder="Password", type="password", name="password", required)
         input(type="submit", value="Login")
-        br
-        a(href="/auth/join") Join &rarr;
+    hr
+    div
+        span Don't have an account?
+        a(href="/auth/join") Create one now &rarr;

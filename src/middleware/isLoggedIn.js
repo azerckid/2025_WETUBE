@@ -1,5 +1,5 @@
 const isLoggedIn = (req, res, next) => {
-    const loggedIn = req.session?.user; // 예시
+    const loggedIn = req.session?.loggedIn;
     if (loggedIn) {
         next();
     } else {

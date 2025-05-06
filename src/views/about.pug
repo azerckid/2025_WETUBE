@@ -3,3 +3,8 @@ extends base.pug
 block content
     h2 About Wetube
     p Wetube is a video sharing platform that allows users to upload, share, and watch videos.
+
+    p= user ? user.name : "Guest"
+    p= user ? user.email : "Guest"
+    p= user ? user.location : "no location"
+    

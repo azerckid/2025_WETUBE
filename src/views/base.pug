@@ -18,10 +18,17 @@ html(lang="ko")
                         a(href="/about") About
                     li
                         a(href="/contact") Contact
-                    li 
-                        a(href="/auth/login") Login
-                 
-            h1=pageTitle
+                    
+                    if loggedIn
+                        li
+                            a(href=`/users/${user.id}`) #{user.name}'s Profile
+                        li
+                            a(href="/auth/logout") Logout
+                    else      
+                        li
+                            a(href="/auth/join") Join
+                        li
+                            a(href="/auth/login") Login
         main
             block content
     include partials/footer

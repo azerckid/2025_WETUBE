@@ -4,6 +4,8 @@ import cors from "cors";
 import morgan from "morgan";
 import helmet from "helmet";
 import router from "./router";
+import { localsMiddleware } from "./middleware/localsMiddleware";
+import { sessionMiddleware } from "./middleware/sessionMiddleware";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -17,17 +19,18 @@ app.use(cors({
     origin: [process.env.CLIENT_URL, "https://your-second-domain.com"],
     credentials: true, // 쿠키 사용 시 필수
 }));
-if (process.env.NODE_ENV === 'production') {
-    app.use(helmet());
-    app.use(morgan('combined'));
-} else {
-    app.use(morgan('dev'));
-}
+app.use(helmet());
+app.use(morgan('dev'));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
+app.use(sessionMiddleware);
+app.use(localsMiddleware);
+
+app.use("/uploads", express.static("uploads"));
+app.use("/static", express.static(path.join(__dirname, "assets")));
 app.use("/", router);
 
 app.use((req, res) => {

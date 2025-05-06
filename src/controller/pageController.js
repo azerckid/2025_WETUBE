@@ -1,4 +1,5 @@
 const pageController = {
+
     getHome: (req, res) => {
         try {
             res.render("home", { pageTitle: "Home" });
@@ -17,7 +18,7 @@ const pageController = {
     },
     getContact: (req, res) => {
         try {
-            // 로직
+
             res.render("contact", { pageTitle: "Contact" });
         } catch (error) {
             console.error(error);

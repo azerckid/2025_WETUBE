@@ -5,7 +5,7 @@ const fakeUser = {
 
 const usersController = {
     getUser: (req, res) => {
-        res.send("getUser")
+        res.render("userDetail", { pageTitle: "User Detail" });
     },
     postEditProfile: (req, res) => {
         res.send("editProfile")
