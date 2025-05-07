@@ -11,17 +11,18 @@ html(lang="ko")
                     li
                         a(href="/videos") Videos
                     li
-                        a(href="/videos/upload") Upload
-                    li
                         a(href="/videos/search") Search
                     li
                         a(href="/about") About
                     li
                         a(href="/contact") Contact
-                    
                     if loggedIn
                         li
-                            a(href=`/users/${user.id}`) #{user.name}'s Profile
+                            a(href="/videos/upload") Upload
+                        li
+                            a(href=`/users/${user._id}`) #{user.name}'s Profile
+                        li
+                            a(href="/users/profile/edit") Edit Profile
                         li
                             a(href="/auth/logout") Logout
                     else      
@@ -31,4 +32,5 @@ html(lang="ko")
                             a(href="/auth/login") Login
         main
             block content
+            block scripts
     include partials/footer

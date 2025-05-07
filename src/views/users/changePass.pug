@@ -1,0 +1,11 @@
+extends ../base.pug
+
+block content
+    h1 Change Password
+    if errorMessage
+        span=errorMessage
+    form(method="POST")
+        input(name="oldPassword", placeholder="Current Password", type="password", required)
+        input(name="newPassword", placeholder="New Password", type="password", required)
+        input(name="newPassword2", placeholder="New Password Confirm", type="password", required)
+        input(type="submit", value="Change Password")

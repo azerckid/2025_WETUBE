@@ -1,11 +1,10 @@
 import Video from "../models/Video";
 
 const videosController = {
-
     getVideos: async (req, res) => {
         try {
             const videos = await Video.find({}).sort({ createdAt: "desc" });
-            res.render("videos", { pageTitle: "Videos", videos });
+            res.render("videos/videos", { pageTitle: "Videos", videos });
         } catch (error) {
             res.status(400).render("404", { pageTitle: "Video Not Found" });
         }
@@ -14,7 +13,7 @@ const videosController = {
         const { id } = req.params;
         try {
             const video = await Video.findById(id);
-            res.render("watch", { pageTitle: video.title, video });
+            res.render("videos/watch", { pageTitle: video.title, video });
         } catch (error) {
             res.status(400).render("404", { pageTitle: "Video Not Found" });
         }
@@ -22,7 +21,7 @@ const videosController = {
     getSearch: async (req, res) => {
         const { keyword } = req.query;
         if (!keyword) {
-            return res.render("search", { pageTitle: "Search", videos: [] });
+            return res.render("videos/search", { pageTitle: "Search", videos: [] });
         }
         const normalizedKeyword = keyword.normalize("NFC");
         try {
@@ -33,7 +32,7 @@ const videosController = {
                     { hashtags: { $regex: normalizedKeyword, $options: "i" } },
                 ],
             });
-            return res.render("search", { pageTitle: "Search", videos });
+            return res.render("videos/search", { pageTitle: "Search", videos });
         } catch (error) {
             console.error(error);
             return res.status(400).render("404", { pageTitle: "Video Not Found" });
@@ -43,7 +42,7 @@ const videosController = {
         const { id } = req.params;
         try {
             const video = await Video.findById(id);
-            res.render("edit", { pageTitle: `Editing ${video.title}`, video });
+            res.render("videos/edit", { pageTitle: `Editing ${video.title}`, video });
         } catch (error) {
             res.status(404).render("404", { pageTitle: "Video Not Found" });
         }
@@ -64,11 +63,11 @@ const videosController = {
             return res.redirect(`/videos/video/${id}`);
             // 이 경로는 절대 경로인가 상대 경로인가?
         } catch (error) {
-            res.status(400).render("edit", { pageTitle: "Editing Failed", errorMessage: error._message });
+            res.status(400).render("videos/edit", { pageTitle: "Editing Failed", errorMessage: error._message });
         }
     },
     getUpload: (req, res) => {
-        res.render("upload", { pageTitle: "Upload Video" });
+        res.render("videos/upload", { pageTitle: "Upload Video" });
     },
     postUpload: async (req, res) => {
         const { title, description, hashtags } = req.body;
@@ -85,12 +84,12 @@ const videosController = {
             });
             res.redirect("/videos");
         } catch (error) {
-            res.status(400).render("upload", { pageTitle: "Upload Video", errorMessage: error._message });
+            res.status(400).render("videos/upload", { pageTitle: "Upload Video", errorMessage: error._message });
         }
     },
     getDelete: (req, res) => {
         const { id } = req.params;
-        res.render("delete", { pageTitle: "Delete Video", id });
+        res.render("videos/delete", { pageTitle: "Delete Video", id });
     },
     postDelete: async (req, res) => {
         const { id } = req.params;

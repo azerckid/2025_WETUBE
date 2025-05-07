@@ -1,10 +1,8 @@
+import "dotenv/config";
 import "./db";
 import "./models/Video";
 import "./models/User";
 import app from "./server";
-import dotenv from "dotenv";
-
-dotenv.config();
 
 const PORT = process.env.PORT || 3000;
 

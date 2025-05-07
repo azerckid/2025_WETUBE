@@ -1,0 +1,18 @@
+extends ../base.pug
+
+block content
+    h2 Welcome #{user.username}
+    if user.socialOnly
+        img(src=user.avatarUrl, width="100", height="100", style="border-radius: 50%")
+    else
+        img(src="/" + user.avatarUrl, width="100", height="100", style="border-radius: 50%")
+        
+    p= user ? user.name : "Guest"
+    p= user ? user.email : "Guest"
+    p= user ? user.location : "no location"
+    p= user ? user.githubId : "no githubId"
+    p= user ? user.socialOnly : "no socialOnly"
+    p= user ? user.avatarUrl : "no avatarUrl"
+   
+    p= user ? user.username : "no username"
+    p= user ? user.kakaoId : "no kakaoId"

@@ -1,9 +1,9 @@
 import express from "express";
 import path from "path";
-import cors from "cors";
 import morgan from "morgan";
 import helmet from "helmet";
 import router from "./router";
+import cors from "cors";
 import { localsMiddleware } from "./middleware/localsMiddleware";
 import { sessionMiddleware } from "./middleware/sessionMiddleware";
 import dotenv from "dotenv";
@@ -14,12 +14,28 @@ const app = express();
 
 app.set("view engine", "pug");
 app.set("views", process.cwd() + "/src/views");
+// app.set("views", path.join(__dirname, "views")); // ✅ 이 줄 중요!
 
 app.use(cors({
     origin: [process.env.CLIENT_URL, "https://your-second-domain.com"],
     credentials: true, // 쿠키 사용 시 필수
 }));
-app.use(helmet());
+app.use(helmet.contentSecurityPolicy({
+    directives: {
+        defaultSrc: ["'self'"],
+        styleSrc: [
+            "'self'",
+            "https:",
+            "https://fonts.googleapis.com", // ✅ CSS 파일
+        ],
+        fontSrc: [
+            "'self'",
+            "https:",
+            "https://fonts.gstatic.com", // ✅ 폰트 파일
+        ],
+        imgSrc: ["'self'", "https:", "data:"], // 여기에 https: 추가!
+    },
+}));
 app.use(morgan('dev'));
 
 app.use(express.json());

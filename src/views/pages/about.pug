@@ -1,4 +1,4 @@
-extends base.pug
+extends ../base.pug
  
 block content
     h2 About Wetube
@@ -7,4 +7,10 @@ block content
     p= user ? user.name : "Guest"
     p= user ? user.email : "Guest"
     p= user ? user.location : "no location"
+    p= user ? user.githubId : "no githubId"
+    p= user ? user.socialOnly : "no socialOnly"
+    p= user ? user.avatarUrl : "no avatarUrl"
+    p= user ? user.username : "no username"
+    
+
     

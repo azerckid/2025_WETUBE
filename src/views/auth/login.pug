@@ -1,4 +1,4 @@
-extends base.pug
+extends ../base.pug
 
 block content
     if errorMessage
@@ -7,6 +7,8 @@ block content
         input(placeholder="Email", type="email", name="email", required)
         input(placeholder="Password", type="password", name="password", required)
         input(type="submit", value="Login")
+        br
+        a(href=`/auth/github/start`) Continue with Github &rarr;
     hr
     div
         span Don't have an account?

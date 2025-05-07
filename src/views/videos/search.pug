@@ -1,8 +1,8 @@
-extends base.pug
-include mixins/video
+extends ../base.pug
+include ../mixins/video
 
 block content
-    h1 Search
+    h2 Search
     form(action="/videos/search", method="GET")
         input(name="keyword", placeholder="Search for a video", required)
         button Search now
