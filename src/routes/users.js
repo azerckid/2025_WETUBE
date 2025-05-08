@@ -1,6 +1,6 @@
 import express from "express";
 import usersController from "../controller/usersController.js";
-import { protectorMiddleware, publicOnlyMiddleware, uploadFiles } from "../middleware/localsMiddleware.js";
+import { protectorMiddleware, publicOnlyMiddleware, avatarUpload } from "../middleware/localsMiddleware.js";
 
 const router = express.Router();
 
@@ -8,7 +8,7 @@ router.get("/:id", usersController.getUser);
 router.route("/profile/edit")
     .all(protectorMiddleware)
     .get(usersController.getEditProfile)
-    .post(uploadFiles.single("avatar"), usersController.postEditProfile);
+    .post(avatarUpload.single("avatar"), usersController.postEditProfile);
 
 router.route("/profile/change-password")
     .all(protectorMiddleware)

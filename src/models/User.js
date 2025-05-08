@@ -16,6 +16,7 @@ const userSchema = new mongoose.Schema({
     githubId: String,
     kakaoId: String,
     socialOnly: { type: Boolean, default: false },
+    videos: [{ type: mongoose.Schema.Types.ObjectId, ref: "Video" }],
 });
 
 userSchema.pre("save", async function () {

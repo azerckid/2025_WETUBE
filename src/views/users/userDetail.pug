@@ -1,4 +1,5 @@
 extends ../base.pug
+include ../mixins/video
 
 block content
     h2 Welcome #{user.username}
@@ -16,3 +17,8 @@ block content
    
     p= user ? user.username : "no username"
     p= user ? user.kakaoId : "no kakaoId"
+
+    each video in user.videos
+        +video(video)
+    else
+        li Sorry nothing found.

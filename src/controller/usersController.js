@@ -1,4 +1,5 @@
 import User from "../models/User";
+import Video from "../models/Video";
 import bcrypt from "bcryptjs";
 
 const usersController = {
@@ -6,11 +7,11 @@ const usersController = {
         const {
             params: { id },
         } = req;
-        const user = await User.findById(id);
+        const user = await User.findById(id).populate("videos");
         if (!user) {
             return res.status(404).render("404", { pageTitle: "User Not Found" });
         }
-        res.render("users/userDetail", { pageTitle: "User Detail", user });
+        res.render("users/userDetail", { pageTitle: `User Detail: ${user.name}`, user });
     },
     getEditProfile: (req, res) => {
         res.render("users/editProfile", { pageTitle: "Edit Profile" });
