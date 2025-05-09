@@ -4,8 +4,9 @@ import User from "../models/User";
 const videosController = {
     getVideos: async (req, res) => {
         try {
-            const videos = await Video.find({}).sort({ createdAt: "desc" });
-            res.render("videos/videos", { pageTitle: "Videos", videos });
+            const videos = await Video.find({})
+                .sort({ createdAt: "desc" }).populate("owner");
+            res.render("videos/videos", { pageTitle: "Videos", videos, owner: videos[0].owner });
         } catch (error) {
             res.status(400).render("404", { pageTitle: "Video Not Found" });
         }
@@ -36,7 +37,7 @@ const videosController = {
                     { description: { $regex: normalizedKeyword, $options: "i" } },
                     { hashtags: { $regex: normalizedKeyword, $options: "i" } },
                 ],
-            });
+            }).populate("owner");
             return res.render("videos/search", { pageTitle: "Search", videos });
         } catch (error) {
             console.error(error);

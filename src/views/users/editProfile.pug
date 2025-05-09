@@ -8,7 +8,7 @@ block content
         img(src=user.avatarUrl, width="100", height="100", style="border-radius: 50%")
     else
         img(src="/" + user.avatarUrl, width="100", height="100", style="border-radius: 50%")
-    form(method="POST", enctype="multipart/form-data")
+    form(method="POST", enctype="multipart/form-data").edit-profile__form
         label(for="avatar") Avatar
         input(type="file", id="avatar", name="avatar", accept="image/*")
         label(for="name") Name
@@ -24,5 +24,5 @@ block content
         
         
         if !user.socialOnly
-            hr
-            a(href="/users/profile/change-password") Change Password &rarr;
+            div.edit-profile__password
+                a(href="/users/profile/change-password") Change Password &rarr;

@@ -13,8 +13,10 @@ dotenv.config();
 const app = express();
 
 app.set("view engine", "pug");
-app.set("views", process.cwd() + "/src/views");
-// app.set("views", path.join(__dirname, "views")); // ✅ 이 줄 중요!
+// app.set("views", process.cwd() + "/src/views");
+console.log("process.cwd()", process.cwd()) // ==> node-modules가 있는 곳 ====> /wetute
+console.log("__dirname", __dirname) // ==> 지금 이 파일이 있는곳 /src
+app.set("views", path.join(__dirname, "views")); // ✅ 이 줄 중요!
 
 app.use(cors({
     origin: [process.env.CLIENT_URL, "https://your-second-domain.com"],
@@ -45,8 +47,10 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(sessionMiddleware);
 app.use(localsMiddleware);
 
-app.use("/uploads", express.static("uploads"));
-app.use("/static", express.static(path.join(__dirname, "assets")));
+
+app.use("/uploads", express.static("uploads")); // 상대경로면 실행한 곳이니까 node-modules가 있는 곳 ====> /wetute/uploads
+app.use("/static", express.static("assets"));
+// app.use("/static", express.static(path.join(__dirname, "../assets"))); //절대경로니까 실행파일이 있는곳 /src의 한단계 위
 app.use("/", router);
 
 app.use((req, res) => {

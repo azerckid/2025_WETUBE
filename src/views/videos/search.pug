@@ -3,11 +3,13 @@ include ../mixins/video
 
 block content
     h2 Search
-    form(action="/videos/search", method="GET")
+    form(action="/videos/search", method="GET").search__form
         input(name="keyword", placeholder="Search for a video", required)
         button Search now
+            i.fas.fa-search
     if videos.length === 0
-        h5 No videos found
+        span.empty__message No videos found
     else
+        div.video-grid
         each video in videos
             +video(video)

@@ -1,0 +1,34 @@
+@use "./config/_reset" as *;
+@use "./config/_variables" as *;
+
+@use "./components/header" as *;
+@use "./components/footer" as *;
+@use "./components/forms" as *;
+@use "./components/shared" as *;
+@use "./components/social-login" as *;
+@use "./components/video" as *;
+
+@use "./screens/home" as *;
+@use "./screens/search" as *;
+@use "./screens/profile" as *;
+@use "./screens/edit-profile" as *;
+
+// Defaults
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    background-color: $bg;
+    color: white;
+}
+
+main {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 50px;
+}
