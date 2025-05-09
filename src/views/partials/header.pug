@@ -1,34 +1,40 @@
 header
-    a(href="/").header__logo
+    a(href="/videos").header__logo
         i.fab.fa-youtube
-        nav
-            ul
+    nav
+        ul
+            li
+                a(href="/videos").header__btn Videos 
+            li
+                a(href="/videos/search").header__btn Search &nbsp;
+                    i.fas.fa-search
+            li
+                a(href="/contact").header__btn Contact &nbsp;
+                    i.fas.fa-envelope
+            if loggedIn
                 li
-                    a(href="/videos") Videos
-                
+                    a(href="/videos/upload").header__btn Upload &nbsp;
+                        i.fas.fa-upload
                 li
-                    a(href="/videos/search") Search
-                        i.fas.fa-search
+                    a(href=`/users/${user._id}`) #{user.name}'s Profile
                 li
-                    a(href="/contact") Contact
-                        i.fas.fa-envelope
-                if loggedIn
-                    li
-                        a(href="/videos/upload") Upload
-                            i.fas.fa-upload
-                    li
-                        a(href=`/users/${user._id}`) #{user.name}'s Profile
-                            i.fas.fa-user
-                    li
-                        a(href="/users/profile/edit") Edit Profile
-                            i.fas.fa-user-edit
-                    li
-                        a(href="/auth/logout") Logout
-                            i.fas.fa-sign-out-alt
-                else      
-                    li
-                        a(href="/auth/join") Join
-                            i.fas.fa-user-plus
-                    li
-                        a(href="/auth/login") Login
-                            i.fas.fa-sign-in-alt
+                    a(href=`/users/${user._id}`)
+                        if user.avatarUrl === ""
+                            span 😀
+                        else if user.socialOnly
+                            img.header__avatar(src=user.avatarUrl)
+                        else
+                            img.header__avatar(src="/" + user.avatarUrl)
+                li
+                    a(href="/users/profile/edit").header__btn Edit Profile
+                li
+                    a(href="/auth/logout").header__btn Logout &nbsp;
+                        i.fas.fa-sign-out-alt
+
+            else      
+                li
+                    a(href="/auth/join").header__btn Join
+                        i.fas.fa-user-plus
+                li
+                    a(href="/auth/login").header__btn Login
+                        i.fas.fa-sign-in-alt

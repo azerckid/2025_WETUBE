@@ -2,14 +2,13 @@ extends ../base.pug
 include ../mixins/video
 
 block content
-    h2 Search
     form(action="/videos/search", method="GET").search__form
         input(name="keyword", placeholder="Search for a video", required)
-        button Search now
+        button Search now &nbsp;
             i.fas.fa-search
     if videos.length === 0
         span.empty__message No videos found
     else
         div.video-grid
-        each video in videos
-            +video(video)
+            each video in videos
+                +video(video)

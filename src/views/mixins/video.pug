@@ -6,9 +6,9 @@ mixin video(data)
         div.video-mixin__data
             span.video-mixin__title=data.title
             div.video-mixin__meta
-                //- span #{data.owner.name} • 
+                span #{data.owner.name} • 
                 span #{data.meta.views} #{data.meta.views === 1 ? "view" : "views"} • 
                 span #{data.createdAt.toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}
-        ul
-            each hashtag in data.hashtags
-                li=hashtag
+            div
+                each hashtag in data.hashtags
+                    span.video-mixin__hashtags=hashtag 

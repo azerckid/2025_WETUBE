@@ -12,7 +12,12 @@ block content
         input(placeholder="Name", type="text", name="name", required)
         input(placeholder="Location", type="text", name="location", required)
         input(type="submit", value="Join")
-    hr
+        
+        div.social-login
+                a(href="/auth/github/start").social__btn.social__btn--github
+                    i.fab.fa-github
+                    |  Continue with Github &rarr;
+   
     div.auth-switch
         span Already have an account? 
         a(href="/auth/login") Log in now &rarr;

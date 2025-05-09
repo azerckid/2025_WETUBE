@@ -4,10 +4,7 @@ block content
     h2 Edit Profile
     if errorMessage
         span=errorMessage
-    if user.socialOnly
-        img(src=user.avatarUrl, width="100", height="100", style="border-radius: 50%")
-    else
-        img(src="/" + user.avatarUrl, width="100", height="100", style="border-radius: 50%")
+
     form(method="POST", enctype="multipart/form-data").edit-profile__form
         label(for="avatar") Avatar
         input(type="file", id="avatar", name="avatar", accept="image/*")
@@ -19,9 +16,8 @@ block content
         input(name="username", placeholder=`${user.username}`, value=user.username, type="text", required)
         label(for="location") Location
         input(name="location", placeholder=`${user.location}`, value=user.location, type="text", required)
-        
+        label(for="submit") Update Profile
         input(type="submit", value="Update Profile")
-        
         
         if !user.socialOnly
             div.edit-profile__password
