@@ -4,17 +4,20 @@ const path = require("path");
 console.log("__dirname", __dirname)
 
 module.exports = {
-    entry: "./src/client/js/main.js",
+    entry: {
+        main: "./src/client/js/main.js",
+        videoPlayer: "./src/client/js/videoPlayer.js",
+    },
     mode: "development",
     watch: true,
     output: {
-        filename: "main.js",
-        path: path.resolve(__dirname, "assets", "js"), //여기서 __dirname은?
+        filename: "js/[name].js",
+        path: path.resolve(__dirname, "assets"), //여기서 __dirname은?
         clean: true,
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: "../css/[name].css", // 원하는 경로로 CSS 파일 추출
+            filename: "css/[name].css", // 원하는 경로로 CSS 파일 추출
         }),
     ],
     module: {
