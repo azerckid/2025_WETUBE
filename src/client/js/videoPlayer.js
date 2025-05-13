@@ -1,57 +1,44 @@
-console.log("videoPlayer loaded");
-
 const video = document.querySelector("video");
 const playBtn = document.getElementById("play");
 const muteBtn = document.getElementById("mute");
 const time = document.getElementById("time");
 const volume = document.getElementById("volume");
+const volumeRange = document.getElementById("volume");
+
+let volumeValue = 0.5;
+video.volume = volumeValue;
 
 const handlePlayClick = (e) => {
     if (video.paused) {
-        playBtn.innerText = "Pause";
         video.play();
     } else {
-        playBtn.innerText = "Play";
         video.pause();
     }
+    playBtn.innerText = video.paused ? "Play" : "Pause";
 };
-const handlePause = () => (playBtn.innerText = "Play");
-const handlePlay = () => (playBtn.innerText = "Pause");
 
-const handleMute = (e) => {
+const handleMuteClick = (e) => {
     if (video.muted) {
-        muteBtn.innerText = "Unmute";
         video.muted = false;
     } else {
-        muteBtn.innerText = "Mute";
         video.muted = true;
     }
+    muteBtn.innerText = video.muted ? "Unmute" : "Mute";
+    volumeRange.value = video.muted ? 0 : volumeValue;
 };
 
-const formatTime = (seconds) => {
-    const secondsNum = parseInt(seconds, 10);
-    let minutes = Math.floor(secondsNum / 60);
-    let remainingSeconds = secondsNum % 60;
-    return `${minutes}:${remainingSeconds}`;
-};
-
-const handleTimeUpdate = () => {
-    time.innerText = `${formatTime(video.currentTime)} / ${formatTime(video.duration)}`;
-};
-
-const handleVolumeChange = (e) => {
-    const { target } = e;
-    video.volume = target.value;
-};
-
-const handleLoadedMetadata = () => {
-    time.innerText = `${formatTime(video.currentTime)} / ${formatTime(video.duration)}`;
+const handleVolumeChange = (event) => {
+    const {
+        target: { value },
+    } = event;
+    if (video.muted) {
+        video.muted = false;
+        muteBtn.innerText = "Mute";
+    }
+    volumeValue = value;
+    video.volume = value;
 };
 
 playBtn.addEventListener("click", handlePlayClick);
-muteBtn.addEventListener("click", handleMute);
-video.addEventListener("pause", handlePause);
-video.addEventListener("play", handlePlay);
-video.addEventListener("timeupdate", handleTimeUpdate);
-video.addEventListener("volumechange", handleVolumeChange);
-video.addEventListener("loadedmetadata", handleLoadedMetadata);
+muteBtn.addEventListener("click", handleMuteClick);
+volumeRange.addEventListener("input", handleVolumeChange);
