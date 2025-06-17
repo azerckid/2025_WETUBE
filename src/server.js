@@ -50,6 +50,7 @@ app.use(localsMiddleware);
 
 app.use("/uploads", express.static("uploads")); // 상대경로면 실행한 곳이니까 node-modules가 있는 곳 ====> /wetute/uploads
 app.use("/static", express.static("assets"));
+app.use("/static", express.static(path.join(__dirname, "client")));
 // app.use("/static", express.static(path.join(__dirname, "../assets"))); //절대경로니까 실행파일이 있는곳 /src의 한단계 위
 app.use("/", router);
 
